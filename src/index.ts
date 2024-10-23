@@ -21,6 +21,10 @@ const app = new Elysia({
   .post("/packages", ({ body }) => {
     return { message: "Packages endpoint", data: body };
   })
+  .post("/*", ({ params, body }) => {
+    const dynamicEndpoint = params["*"];
+    return { message: `Dynamic endpoint: ${dynamicEndpoint}`, data: body };
+  })
   .listen(6301);
 
 console.log(
